@@ -39,7 +39,6 @@ class SearchPage extends Component {
   addFavorite = event => {
     let bookData
 
-    console.log(event.target.id)
     for (let i = 0; i < this.state.books.length; i++) {
       if (this.state.books[i]._id === event.target.id) {
         bookData = this.state.books[i]
@@ -47,7 +46,9 @@ class SearchPage extends Component {
     }
 
     API.saveBook(bookData)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res.config.data)
+      })
       .catch(err => console.log(err))
   }
 

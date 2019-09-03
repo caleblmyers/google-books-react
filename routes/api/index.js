@@ -3,9 +3,10 @@ const booksController = require("../../controllers/booksController");
 
 router.route("/")
   .get(booksController.getFavorites)
-
-router.route("/:title")
   .post(booksController.addOne)
+
+router.route("/:id")
+  .delete(booksController.deleteOne)
 // // Matches with "/api/books"
 // router.route("/")
 //   .get(booksController.findAll)

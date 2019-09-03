@@ -15,16 +15,20 @@ class SavedPage extends Component {
     API.getFavorites()
       .then(res => {
         this.setState({
-          books: res
+          books: res.data
         })
         console.log(this.state.books)
-        console.log("books loaded")
       })
       .catch(err => console.log(err))
   }
 
-  removeBook = event => {
+  deleteBook = event => {
     console.log(event.target.id)
+    API.deleteBook(event.target.id)
+      .then(res => {
+        console.log("Books left: ", res)
+        this.loadFavorites()
+      })
   }
 
   render() {
@@ -42,7 +46,7 @@ class SavedPage extends Component {
                   <p>{book.description}</p>
                   <img src={book.image} alt={book.title} className="d-block img-fluid" />
                   <a href={book.link}><button className="btn btn-info">Go to Book Page</button></a>
-                  <button onClick={this.removeBook} id={book._id} className="btn btn-danger">Remove Book</button>
+                  <button onClick={this.deleteBook} id={book._id} className="btn btn-danger">Remove Book</button>
                 </ListItem>
               </List>
             ))}
