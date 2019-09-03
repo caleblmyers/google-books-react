@@ -18,7 +18,7 @@ app.use(cors())
 // Define API routes here
 app.use(require("./routes"))
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googlebooks"
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://cmyers5108:Erebor4online@ds215988.mlab.com:15988/heroku_g336cdt7"
 mongoose.connect(MONGODB_URI)
 
 // Send every other request to the React app

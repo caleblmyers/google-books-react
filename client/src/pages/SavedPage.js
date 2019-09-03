@@ -8,8 +8,7 @@ class SavedPage extends Component {
   }
 
   componentDidMount = () => {
-    fetch("http://localhost:3001/api/books")
-      .then(data => console.log(data))
+    this.loadFavorites()
   }
 
   loadFavorites = () => {
