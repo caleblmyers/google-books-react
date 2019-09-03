@@ -10,7 +10,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav>
+          <li className="nav-item">
+            <a className="nav-link" href="/">Search</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/saved">Saved</a>
+          </li>
+        </Nav>
         <Jumbotron >
           <h1>Google Books Search</h1>
           <h6>Keep track of your favorite stories</h6>
