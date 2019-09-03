@@ -7,7 +7,7 @@ module.exports = {
       .find({}, function(err, favorites) {
         if (err) throw err
         console.log(favorites)
-        res.send(favorites)
+        res.json(favorites)
       })
       // .then(favorites => res.json(favorites))
   },
