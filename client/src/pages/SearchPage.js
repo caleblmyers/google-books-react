@@ -11,8 +11,9 @@ class SearchPage extends Component {
   }
 
   searchBooks = event => {
+    const { search } = this.state
     event.preventDefault()
-    API.getBooks(this.state.search)
+    API.getBooks(search)
       .then(res => {
         let newBooks = []
 
@@ -37,11 +38,12 @@ class SearchPage extends Component {
   }
 
   addFavorite = event => {
+    const { books } = this.state
     let bookData
 
-    for (let i = 0; i < this.state.books.length; i++) {
-      if (this.state.books[i]._id === event.target.id) {
-        bookData = this.state.books[i]
+    for (let i = 0; i < books.length; i++) {
+      if (books[i]._id === event.target.id) {
+        bookData = books[i]
       }
     }
 
@@ -62,18 +64,20 @@ class SearchPage extends Component {
   }
 
   render() {
+    const { search, books } = this.state
+
     return (
       <div>
         <form className="mx-4 overflow-auto">
           <div className="form-group">
             <label>Book Title</label>
           </div>
-          <SearchInput value={this.state.search} name="search" onChange={this.handleInputChange} />
+          <SearchInput value={search} name="search" onChange={this.handleInputChange} />
           <FormBtn onClick={this.searchBooks}>Search</FormBtn>
         </form>
-        {this.state.books.length ? (
+        {books.length ? (
           <div>
-            {this.state.books.map(book => (
+            {books.map(book => (
               <List key={book._id}>
                 <ListItem>
                   <h4>{book.title}</h4>
@@ -82,8 +86,8 @@ class SearchPage extends Component {
                   ))}
                   <p>{book.description}</p>
                   <img src={book.image} alt={book.title} className="d-block img-fluid" />
-                  <a href={book.link}><button className="btn btn-info">Go to Book Page</button></a>
                   <button onClick={this.addFavorite} id={book._id} className="btn btn-success">Add to Favorites</button>
+                  <a href={book.link}><button className="btn btn-info">Go to Book Page</button></a>
                 </ListItem>
               </List>
             ))}
